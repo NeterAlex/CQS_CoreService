@@ -4,6 +4,50 @@
         <name>CQS_CoreService.Application</name>
     </assembly>
     <members>
+        <member name="M:CQS_CoreService.Application.SoilDataService.CreateSoilData(System.Int32,System.String,System.String,Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+                根据数据文件创建计算耕地数据
+            </summary>
+            <param name="userId"></param>
+            <param name="location"></param>
+            <param name="description"></param>
+            <param name="rawFile"></param>
+            <param name="regionFile"></param>
+            <returns></returns>
+            <exception cref="T:System.IO.FileLoadException"></exception>
+        </member>
+        <member name="M:CQS_CoreService.Application.SoilDataService.GetSoilDataListFromUser(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                分页获取指定用户的所有耕地数据
+            </summary>
+            <param name="userId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Application.SoilDataService.GetSoilDataFromUserGroup(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                获取指定UserGroup下的所有耕地数据
+            </summary>
+            <param name="userGroupId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Application.SoilDataService.GetSoilData(System.Int32)">
+            <summary>
+                获取指定的耕地数据
+            </summary>
+            <param name="soilDataId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Application.SoilDataService.QueryPyServer(System.Byte[])">
+            <summary>
+                请求PyServer
+            </summary>
+            <param name="rawFile"></param>
+            <returns></returns>
+        </member>
         <member name="M:CQS_CoreService.Application.UserService.UpdateUserInfo(System.Int32,CQS_CoreService.Core.Entity.UserEntity)">
             <summary>
                 更新指定用户信息
@@ -36,13 +80,22 @@
             <param name="pageIndex"></param>
             <returns></returns>
         </member>
-        <member name="M:CQS_CoreService.Application.UserService.Getuserlistbyrole(System.Int32,System.Int32,System.Int32)">
+        <member name="M:CQS_CoreService.Application.UserService.GetUserListByRole(System.Int32,System.Int32,System.Int32)">
             <summary>
                 分页查询指定角色下的所有用户
             </summary>
             <param name="roleId"></param>
-            <param name="pagesize"></param>
-            <param name="pageindex"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Application.UserService.GetUserListByGroup(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                分页查询指定用户组下的所有用户
+            </summary>
+            <param name="groupId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
             <returns></returns>
         </member>
     </members>

@@ -5,6 +5,12 @@ namespace CQS_CoreService.Application;
 
 public interface IUserService
 {
+    public Task<UserEntity> GetUser(int userId);
+    public Task<bool> DeleteUser(int userId);
+    public Task<UserEntity> UpdateUserInfo(int userId, UserEntity user);
+    public Task<List<UserEntity>> GetUserList(int pageSize, int pageIndex);
+    public Task<List<UserEntity>> GetUserListByRole(int roleId, int pageSize, int pageindex);
+    public Task<List<UserEntity>> GetUserListByGroup(int roleId, int pageSize, int pageindex);
 }
 
 public class UserService : IUserService, ITransient
@@ -103,10 +109,10 @@ public class UserService : IUserService, ITransient
     ///     分页查询指定角色下的所有用户
     /// </summary>
     /// <param name="roleId"></param>
-    /// <param name="pagesize"></param>
+    /// <param name="pageSize"></param>
     /// <param name="pageindex"></param>
     /// <returns></returns>
-    public async Task<List<UserEntity>> Getuserlistbyrole(int roleId, int pagesize, int pageindex)
+    public async Task<List<UserEntity>> GetUserListByRole(int roleId, int pageSize, int pageindex)
     {
         try
         {
@@ -115,7 +121,7 @@ public class UserService : IUserService, ITransient
             var userList = await _db.Queryable<UserEntity>()
                 .Includes(i => i.Roles)
                 .Where(i => i.Roles.Contains(role))
-                .ToPageListAsync(pageindex, pagesize, totalCount);
+                .ToPageListAsync(pageindex, pageSize, totalCount);
             return userList;
         }
         catch (Exception e)
@@ -125,7 +131,14 @@ public class UserService : IUserService, ITransient
         }
     }
 
-    public async Task<List<UserEntity>> Getuserlistbygroup(int groupId, int pagesize, int pageindex)
+    /// <summary>
+    ///     分页查询指定用户组下的所有用户
+    /// </summary>
+    /// <param name="groupId"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="pageindex"></param>
+    /// <returns></returns>
+    public async Task<List<UserEntity>> GetUserListByGroup(int groupId, int pageSize, int pageindex)
     {
         try
         {
@@ -134,7 +147,7 @@ public class UserService : IUserService, ITransient
             var userList = await _db.Queryable<UserEntity>()
                 .Includes(i => i.UserGroups)
                 .Where(i => i.UserGroups.Contains(group))
-                .ToPageListAsync(pageindex, pagesize, totalCount);
+                .ToPageListAsync(pageindex, pageSize, totalCount);
             return userList;
         }
         catch (Exception e)

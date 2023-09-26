@@ -5,9 +5,10 @@ namespace CQS_CoreService.Application;
 
 public interface IInitService
 {
+    public Task InitDatabaseData();
 }
 
-public class InitService : IInitService
+public class InitService : IInitService, ITransient
 {
     private readonly ISqlSugarClient _db;
 
@@ -16,10 +17,13 @@ public class InitService : IInitService
         _db = db;
     }
 
-    public async void InitDatabaseType()
+    public async Task InitDatabaseData()
     {
         try
         {
+            var baseRoleT = await _db.Queryable<UserRoleEntity>().Where(i => i.Name == "user").FirstAsync();
+            var baseRoleAdminT = await _db.Queryable<UserRoleEntity>().Where(i => i.Name == "dev-admin").FirstAsync();
+            var baseUserGroupT = await _db.Queryable<UserGroupEntity>().Where(i => i.Name == "default").FirstAsync();
             var baseRole = new UserRoleEntity
             {
                 Name = "user",
@@ -35,9 +39,9 @@ public class InitService : IInitService
                 Name = "default",
                 Description = "默认分组"
             };
-            await _db.Insertable(baseRole).ExecuteCommandAsync();
-            await _db.Insertable(baseRoleAdmin).ExecuteCommandAsync();
-            await _db.Insertable(baseUserGroup).ExecuteCommandAsync();
+            if (baseRoleT == null) await _db.Storageable(baseRole).ExecuteCommandAsync();
+            if (baseRoleAdminT == null) await _db.Storageable(baseRoleAdmin).ExecuteCommandAsync();
+            if (baseUserGroupT == null) await _db.Storageable(baseUserGroup).ExecuteCommandAsync();
         }
         catch (Exception e)
         {

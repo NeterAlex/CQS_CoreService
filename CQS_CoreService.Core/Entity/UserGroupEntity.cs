@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CQS_CoreService.Core.Entity.Relations;
 using SqlSugar;
 
 namespace CQS_CoreService.Core.Entity;
@@ -20,4 +21,7 @@ public class UserGroupEntity
 
     // 关系
     [SugarColumn(IsNullable = true)] public List<UserEntity> Admin { get; set; }
+
+    [Navigate(typeof(UserGroupRelation), nameof(UserGroupRelation.UserGroupId), nameof(UserGroupRelation.UserId))]
+    public List<UserEntity> Users { get; set; }
 }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CQS_CoreService.Web.Core.Controllers;
 
+[Microsoft.AspNetCore.Components.Route("api/auth")]
+[ApiDescriptionSettings(Tag = "授权与鉴权 Authorization & Authentication API")]
 [DynamicApiController]
 public class AuthorizeController
 {
@@ -17,9 +19,16 @@ public class AuthorizeController
     }
 
     [HttpPost]
-    public async Task<UserEntity> RegisterNormalUser([FromForm] string username, [FromForm] string password)
+    public async Task<UserEntity> Register([FromForm] string username, [FromForm] string password)
     {
         var newUser = await _authorizeService.RegisterNormalUser(username, password);
         return newUser;
+    }
+
+    [HttpPost]
+    public async Task<string> Login([FromForm] string username, [FromForm] string password,
+        [FromForm] bool usePhone = false)
+    {
+        return await _authorizeService.Login(username, password);
     }
 }

@@ -4,5 +4,46 @@
         <name>CQS_CoreService.Application</name>
     </assembly>
     <members>
+        <member name="M:CQS_CoreService.Application.UserService.UpdateUserInfo(System.Int32,CQS_CoreService.Core.Entity.UserEntity)">
+            <summary>
+                更新指定用户信息
+            </summary>
+            <param name="userId"></param>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Application.UserService.DeleteUser(System.Int32)">
+            <summary>
+                删除指定用户
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CQS_CoreService.Application.UserService.GetUser(System.Int32)">
+            <summary>
+                获取指定用户
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CQS_CoreService.Application.UserService.GetUserList(System.Int32,System.Int32)">
+            <summary>
+                分页查询所有用户
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Application.UserService.Getuserlistbyrole(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                分页查询指定角色下的所有用户
+            </summary>
+            <param name="roleId"></param>
+            <param name="pagesize"></param>
+            <param name="pageindex"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

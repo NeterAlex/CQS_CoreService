@@ -28,4 +28,5 @@
         <ProjectReference Include="..\CQS_CoreService.Application\CQS_CoreService.Application.csproj"/>
     </ItemGroup>
 
+
 </Project>

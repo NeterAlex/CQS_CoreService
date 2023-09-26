@@ -90,7 +90,7 @@ public class UserService : IUserService, ITransient
     /// <param name="pageSize"></param>
     /// <param name="pageIndex"></param>
     /// <returns></returns>
-    public async Task<List<UserEntity>> GetUserList(int pageSize, int pageIndex)
+    public async Task<List<UserEntity>> GetUserList(int pageSize = 50, int pageIndex = 1)
     {
         try
         {
@@ -110,9 +110,9 @@ public class UserService : IUserService, ITransient
     /// </summary>
     /// <param name="roleId"></param>
     /// <param name="pageSize"></param>
-    /// <param name="pageindex"></param>
+    /// <param name="pageIndex"></param>
     /// <returns></returns>
-    public async Task<List<UserEntity>> GetUserListByRole(int roleId, int pageSize, int pageindex)
+    public async Task<List<UserEntity>> GetUserListByRole(int roleId, int pageSize = 50, int pageIndex = 1)
     {
         try
         {
@@ -121,7 +121,7 @@ public class UserService : IUserService, ITransient
             var userList = await _db.Queryable<UserEntity>()
                 .Includes(i => i.Roles)
                 .Where(i => i.Roles.Contains(role))
-                .ToPageListAsync(pageindex, pageSize, totalCount);
+                .ToPageListAsync(pageIndex, pageSize, totalCount);
             return userList;
         }
         catch (Exception e)
@@ -136,9 +136,9 @@ public class UserService : IUserService, ITransient
     /// </summary>
     /// <param name="groupId"></param>
     /// <param name="pageSize"></param>
-    /// <param name="pageindex"></param>
+    /// <param name="pageIndex"></param>
     /// <returns></returns>
-    public async Task<List<UserEntity>> GetUserListByGroup(int groupId, int pageSize, int pageindex)
+    public async Task<List<UserEntity>> GetUserListByGroup(int groupId, int pageSize = 50, int pageIndex = 1)
     {
         try
         {
@@ -147,7 +147,7 @@ public class UserService : IUserService, ITransient
             var userList = await _db.Queryable<UserEntity>()
                 .Includes(i => i.UserGroups)
                 .Where(i => i.UserGroups.Contains(group))
-                .ToPageListAsync(pageindex, pageSize, totalCount);
+                .ToPageListAsync(pageIndex, pageSize, totalCount);
             return userList;
         }
         catch (Exception e)

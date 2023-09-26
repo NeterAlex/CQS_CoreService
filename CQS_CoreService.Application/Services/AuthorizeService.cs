@@ -25,14 +25,12 @@ public class AuthorizeService : IAuthorizeService, ITransient
         try
         {
             var normalRole = await _db.Queryable<UserRoleEntity>()
-                .Includes(i => i.Name)
-                .Where(i => SqlFunc.Equals(i.Name, "user"))
-                .FirstAsync();
+                .Where(i => i.Name == "user")
+                .SingleAsync();
 
             var defaultGroup = await _db.Queryable<UserGroupEntity>()
-                .Includes(i => i.Name)
-                .Where(i => SqlFunc.Equals(i.Name, "default"))
-                .FirstAsync();
+                .Where(i => i.Name == "default")
+                .SingleAsync();
 
             var newUser = new UserEntity
             {

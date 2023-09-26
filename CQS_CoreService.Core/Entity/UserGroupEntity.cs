@@ -19,5 +19,5 @@ public class UserGroupEntity
     public string Name { get; set; }
 
     // 关系
-    public List<UserEntity> Admin { get; set; }
+    [SugarColumn(IsNullable = true)] public List<UserEntity> Admin { get; set; }
 }

@@ -4,5 +4,24 @@
         <name>CQS_CoreService.Web.Core</name>
     </assembly>
     <members>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.Calc(System.Int32,System.String,System.String,Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+                根据数据文件与区域文件计算结果
+            </summary>
+            <param name="userId"></param>
+            <param name="location"></param>
+            <param name="description"></param>
+            <param name="rawFile"></param>
+            <param name="regionFile"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.GetSingle(System.Int32)">
+            <summary>
+                获取指定耕地质量数据
+            </summary>
+            <param name="dataId"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

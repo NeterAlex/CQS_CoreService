@@ -17,4 +17,11 @@ public class NetworkTest
         var resp = await "https://www.google.com".GetAsync();
         Assert.True(resp.IsSuccessStatusCode);
     }
+
+    [Fact]
+    public async Task PyServerConnection()
+    {
+        var resp = await "http://127.0.0.1:8001/api/test".GetAsync();
+        Assert.True(resp.IsSuccessStatusCode);
+    }
 }

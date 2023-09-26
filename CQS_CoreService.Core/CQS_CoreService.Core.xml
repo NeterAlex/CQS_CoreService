@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CQS_CoreService.Core</name>
+    </assembly>
+    <members>
+        <member name="T:CQS_CoreService.Core.DbContext">
+            <summary>
+            数据库上下文对象
+            </summary>
+        </member>
+        <member name="F:CQS_CoreService.Core.DbContext.Instance">
+            <summary>
+            SqlSugar 数据库实例
+            </summary>
+        </member>
+        <member name="T:CQS_CoreService.Core.Providers.NewtonsoftJsonSerializerProvider">
+            <summary>
+                Newtonsoft.Json 实现
+            </summary>
+        </member>
+        <member name="M:CQS_CoreService.Core.Providers.NewtonsoftJsonSerializerProvider.Serialize(System.Object,System.Object)">
+            <summary>
+                序列化对象
+            </summary>
+            <param name="value"></param>
+            <param name="jsonSerializerOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Core.Providers.NewtonsoftJsonSerializerProvider.Deserialize``1(System.String,System.Object)">
+            <summary>
+                反序列化字符串
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <param name="jsonSerializerOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Core.Providers.NewtonsoftJsonSerializerProvider.Deserialize(System.String,System.Type,System.Object)">
+            <summary>
+                反序列化字符串
+            </summary>
+            <param name="json"></param>
+            <param name="returnType"></param>
+            <param name="jsonSerializerOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Core.Providers.NewtonsoftJsonSerializerProvider.GetSerializerOptions">
+            <summary>
+                返回读取全局配置的 JSON 选项
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CQS_CoreService.Core.UnifyResult.RESTfulResult`1.StatusCode">
+            <summary>
+                状态码
+            </summary>
+        </member>
+        <member name="P:CQS_CoreService.Core.UnifyResult.RESTfulResult`1.Data">
+            <summary>
+                数据
+            </summary>
+        </member>
+        <member name="P:CQS_CoreService.Core.UnifyResult.RESTfulResult`1.Succeeded">
+            <summary>
+                执行成功
+            </summary>
+        </member>
+        <member name="P:CQS_CoreService.Core.UnifyResult.RESTfulResult`1.Errors">
+            <summary>
+                错误信息
+            </summary>
+        </member>
+        <member name="P:CQS_CoreService.Core.UnifyResult.RESTfulResult`1.Extras">
+            <summary>
+                附加数据
+            </summary>
+        </member>
+        <member name="P:CQS_CoreService.Core.UnifyResult.RESTfulResult`1.Timestamp">
+            <summary>
+                时间戳
+            </summary>
+        </member>
+        <member name="T:Project.UnifyResult.RESTfulResultProvider">
+            <summary>
+                RESTful 风格返回值
+            </summary>
+        </member>
+        <member name="M:Project.UnifyResult.RESTfulResultProvider.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext,Furion.FriendlyException.ExceptionMetadata)">
+            <summary>
+                异常返回值
+            </summary>
+            <param name="context"></param>
+            <param name="metadata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.UnifyResult.RESTfulResultProvider.OnSucceeded(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext,System.Object)">
+            <summary>
+                成功返回值
+            </summary>
+            <param name="context"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.UnifyResult.RESTfulResultProvider.OnValidateFailed(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Furion.DataValidation.ValidationMetadata)">
+            <summary>
+                验证失败返回值
+            </summary>
+            <param name="context"></param>
+            <param name="metadata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.UnifyResult.RESTfulResultProvider.OnResponseStatusCodes(Microsoft.AspNetCore.Http.HttpContext,System.Int32,Furion.UnifyResult.UnifyResultSettingsOptions)">
+            <summary>
+                特定状态码返回值
+            </summary>
+            <param name="context"></param>
+            <param name="statusCode"></param>
+            <param name="unifyResultSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Project.UnifyResult.RESTfulResultProvider.RESTfulResult(System.Int32,System.Boolean,System.Object,System.Object)">
+            <summary>
+                返回 RESTful 风格结果集
+            </summary>
+            <param name="statusCode"></param>
+            <param name="succeeded"></param>
+            <param name="data"></param>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <NoWarn>1701;1702;1591</NoWarn>
+        <DocumentationFile>CQS_CoreService.Core.xml</DocumentationFile>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <None Remove="CQS_CoreService.Core.xml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.8.8.43"/>
+        <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.43"/>
+        <PackageReference Include="Furion.Pure" Version="4.8.8.43"/>
+        <PackageReference Include="SqlSugarCore" Version="5.1.4.105"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Constants\"/>
+        <Folder Include="Extension\"/>
+        <Folder Include="Utils\"/>
+    </ItemGroup>
+
+</Project>

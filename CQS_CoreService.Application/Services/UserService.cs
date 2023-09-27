@@ -73,7 +73,10 @@ public class UserService : IUserService, ITransient
     {
         try
         {
-            var user = await _db.Queryable<UserEntity>().Where(i => i.Id == userId).SingleAsync();
+            var user = await _db.Queryable<UserEntity>()
+                .Includes(i => i.Roles)
+                .Includes(i => i.UserGroups)
+                .Where(i => i.Id == userId).SingleAsync();
             if (user is null) throw new Exception("用户不存在");
             return user;
         }

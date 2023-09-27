@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CQS_CoreService.Application;
+using CQS_CoreService.Core.Dto;
 using CQS_CoreService.Core.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,10 +40,13 @@ public class AuthorizeController
     /// <param name="usePhone"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<string> Login([FromForm] string username, [FromForm] string password,
+    public async Task<AuthorizeDto> Login([FromForm] string username, [FromForm] string password,
         [FromForm] bool usePhone = false)
     {
-        return await _authorizeService.Login(username, password);
+        return new AuthorizeDto
+        {
+            AccessToken = await _authorizeService.Login(username, password)
+        };
     }
 
     /// <summary>
@@ -50,8 +54,11 @@ public class AuthorizeController
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public async Task<string> FastJWT()
+    public async Task<AuthorizeDto> FastJWT()
     {
-        return await _authorizeService.Login("neteralex", "1q2w3e$r5tGh");
+        return new AuthorizeDto
+        {
+            AccessToken = await _authorizeService.Login("neteralex", "1q2w3e$r5tGh")
+        };
     }
 }

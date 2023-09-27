@@ -4,9 +4,32 @@
         <name>CQS_CoreService.Web.Core</name>
     </assembly>
     <members>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.Register(System.String,System.String)">
+            <summary>
+                注册账号
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.Login(System.String,System.String,System.Boolean)">
+            <summary>
+                登录并签发Token
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="usePhone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.FastJWT">
+            <summary>
+                [仅开发用]快速获得Token
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.Calc(System.Int32,System.String,System.String,Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
-                根据数据文件与区域文件计算结果
+                根据数据源文件与区域文件计算耕地质量数据
             </summary>
             <param name="userId"></param>
             <param name="location"></param>
@@ -16,11 +39,64 @@
             <returns></returns>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.GetSingle(System.Int32)">
+        <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.GetSingleSoilData(System.Int32)">
             <summary>
                 获取指定耕地质量数据
             </summary>
             <param name="dataId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.GetListFromUser(System.Int32)">
+            <summary>
+                获取指定用户的所有耕地质量数据
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.GetListFromUserGroup(System.Int32)">
+            <summary>
+                获取指定用户组的所有耕地质量数据
+            </summary>
+            <param name="userGroupId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.UserController.GetSingleUser(System.Int32)">
+            <summary>
+                获取指定用户数据（脱敏）
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.UserController.DeleteSingleUser(System.Int32)">
+            <summary>
+                删除指定用户
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.UserController.GetUserList(System.Int32,System.Int32)">
+            <summary>
+                获取所有用户列表（分页、脱敏）
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.UserController.GetUserListFromUserGroup(System.Int32,System.Int32,System.Int32)">
+            <summary>
+                获取指定用户组下的所有用户（分页、脱敏）
+            </summary>
+            <param name="userGroupId"></param>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.UserController.UpdateUser(System.Int32,CQS_CoreService.Core.Vo.UserUpdateVo)">
+            <summary>
+                更新指定用户信息
+            </summary>
+            <param name="userId"></param>
+            <param name="userUpdateVo"></param>
             <returns></returns>
         </member>
     </members>

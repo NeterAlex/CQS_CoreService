@@ -39,6 +39,7 @@ public class Startup : AppStartup
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseInject(string.Empty);
+        app.UseUnifyResultStatusCodes();
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

@@ -74,4 +74,11 @@ public class UserServiceTest
         await _userService.DeleteUser(newUserId);
         Assert.Null(await _db.Queryable<UserEntity>().Where(i => i.Id == newUserId).SingleAsync());
     }
+
+    [Fact]
+    public async Task 测试()
+    {
+        var 字符呃呃呃 = '3';
+        _testOutputHelper.WriteLine(字符呃呃呃.ToString());
+    }
 }

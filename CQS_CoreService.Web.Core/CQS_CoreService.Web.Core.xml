@@ -4,24 +4,21 @@
         <name>CQS_CoreService.Web.Core</name>
     </assembly>
     <members>
-        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.Register(System.String,System.String)">
+        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.Register(CQS_CoreService.Core.Vo.AuthorizeRegisterVo)">
             <summary>
                 注册账号
             </summary>
-            <param name="username"></param>
-            <param name="password"></param>
+            <param name="vo"></param>
             <returns></returns>
         </member>
-        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.Login(System.String,System.String,System.Boolean)">
+        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.Login(CQS_CoreService.Core.Vo.AuthorizeLoginVo)">
             <summary>
                 登录并签发Token
             </summary>
-            <param name="username"></param>
-            <param name="password"></param>
-            <param name="usePhone"></param>
+            <param name="vo"></param>
             <returns></returns>
         </member>
-        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.FastJWT">
+        <member name="M:CQS_CoreService.Web.Core.Controllers.AuthorizeController.FastJwt">
             <summary>
                 [仅开发用]快速获得Token
             </summary>

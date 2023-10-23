@@ -21,9 +21,15 @@ public class InitService : IInitService, ITransient
     {
         try
         {
-            var baseRoleT = await _db.Queryable<UserRoleEntity>().Where(i => i.Name == "user").FirstAsync();
-            var baseRoleAdminT = await _db.Queryable<UserRoleEntity>().Where(i => i.Name == "dev-admin").FirstAsync();
-            var baseUserGroupT = await _db.Queryable<UserGroupEntity>().Where(i => i.Name == "default").FirstAsync();
+            var baseRoleT = await _db.Queryable<UserRoleEntity>()
+                .Where(i => i.Name == "user")
+                .FirstAsync();
+            var baseRoleAdminT = await _db.Queryable<UserRoleEntity>()
+                .Where(i => i.Name == "dev-admin")
+                .FirstAsync();
+            var baseUserGroupT = await _db.Queryable<UserGroupEntity>()
+                .Where(i => i.Name == "default")
+                .FirstAsync();
             var baseRole = new UserRoleEntity
             {
                 Name = "user",

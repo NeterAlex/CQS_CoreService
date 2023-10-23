@@ -25,6 +25,7 @@ public class Startup : AppStartup
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.Formatting = Formatting.Indented;
                 options.SerializerSettings.Converters.AddLongTypeConverters();
+                options.SerializerSettings.Converters.AddClayConverters();
             })
             .AddInjectWithUnifyResult<RESTfulResultProvider>();
         services.AddSqlsugarSetup();

@@ -98,7 +98,10 @@ public class UserService : IUserService, ITransient
         try
         {
             RefAsync<int> totalCount = 0;
-            var userList = await _db.Queryable<UserEntity>().ToPageListAsync(pageIndex, pageSize, totalCount);
+            var userList = await _db.Queryable<UserEntity>()
+                .Includes(i => i.UserGroups)
+                .Includes(i => i.Roles)
+                .ToPageListAsync(pageIndex, pageSize, totalCount);
             return userList;
         }
         catch (Exception e)

@@ -49,7 +49,7 @@ public class SoilDataService : ISoilDataService, ITransient
                 var bytesRegion = new byte[regionFile.Length];
                 await using var streamRegion = regionFile.OpenReadStream();
                 _ = await streamRegion.ReadAsync(bytesRegion.AsMemory(0, (int)regionFile.Length));
-                regionJson = Encoding.UTF8.GetString(bytesRegion);
+                regionJson = Encoding.UTF8.GetString(bytesRegion).Replace("\r\n", "");
             }
 
             if (rawFile.Length == 0) throw new FileLoadException("文件为空");
@@ -60,14 +60,14 @@ public class SoilDataService : ISoilDataService, ITransient
             // 请求 PyServer
             var result = await QueryPyServer(bytesRaw);
             var user = await _db.Queryable<UserEntity>().Where(i => i.Id == userId).SingleAsync();
-            Console.WriteLine(result.RawJson);
+            //Console.WriteLine(result.RawJson);
 
             // 构建 SoilData
             var soilData = new SoilDataEntity
             {
-                RegionJson = regionJson,
-                RawJson = result.RawJson,
-                GeoJson = result.GeoJson,
+                RegionJson = regionJson.Trim(),
+                RawJson = result.RawJson.Replace("'", "\""),
+                GeoJson = result.GeoJson.Replace("'", "\""),
                 ExtraJson = @"{}",
                 Location = location ?? "未设置区域",
                 Owner = user,

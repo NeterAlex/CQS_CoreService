@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CQS_CoreService.Application;
 using CQS_CoreService.Core.Dto;
 using CQS_CoreService.Core.Entity;
+using CQS_CoreService.Core.Vo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CQS_CoreService.Web.Core.Controllers;
@@ -22,30 +23,26 @@ public class AuthorizeController
     /// <summary>
     ///     注册账号
     /// </summary>
-    /// <param name="username"></param>
-    /// <param name="password"></param>
+    /// <param name="vo"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<UserEntity> Register([FromForm] string username, [FromForm] string password)
+    public async Task<UserEntity> Register(AuthorizeRegisterVo vo)
     {
-        var newUser = await _authorizeService.RegisterNormalUser(username, password);
+        var newUser = await _authorizeService.RegisterNormalUser(vo.Username, vo.Password);
         return newUser;
     }
 
     /// <summary>
     ///     登录并签发Token
     /// </summary>
-    /// <param name="username"></param>
-    /// <param name="password"></param>
-    /// <param name="usePhone"></param>
+    /// <param name="vo"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<AuthorizeDto> Login([FromForm] string username, [FromForm] string password,
-        [FromForm] bool usePhone = false)
+    public async Task<AuthorizeDto> Login(AuthorizeLoginVo vo)
     {
         return new AuthorizeDto
         {
-            AccessToken = await _authorizeService.Login(username, password)
+            AccessToken = await _authorizeService.Login(vo.Username, vo.Password)
         };
     }
 
@@ -54,7 +51,7 @@ public class AuthorizeController
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public async Task<AuthorizeDto> FastJWT()
+    public async Task<AuthorizeDto> FastJwt()
     {
         return new AuthorizeDto
         {

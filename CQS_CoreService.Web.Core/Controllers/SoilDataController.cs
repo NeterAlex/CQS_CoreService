@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using CQS_CoreService.Application;
 using CQS_CoreService.Core.Dto;
-using CQS_CoreService.Core.Entity;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -54,10 +53,11 @@ public class SoilDataController
     /// <returns></returns>
     [HttpGet("single")]
     [Authorize]
-    public async Task<SoilDataEntity> GetSingleSoilData(int dataId)
+    public async Task<SoilDataDetailDto> GetSingleSoilData(int dataId)
     {
         var result = await _soilDataService.GetSoilData(dataId);
-        return result;
+        var resp = result.Adapt<SoilDataDetailDto>();
+        return resp;
     }
 
     /// <summary>

@@ -13,13 +13,13 @@ public class SoilDataEntity
 
     [SugarColumn(UpdateServerTime = true)] public DateTime UpdatedTime { get; set; }
 
-    [SugarColumn(IsJson = true)] public string ExtraJson { get; set; }
+    [SugarColumn(ColumnDataType = "text")] public string ExtraJson { get; set; }
 
-    [SugarColumn(IsJson = true)] public string GeoJson { get; set; }
+    [SugarColumn(ColumnDataType = "text")] public string GeoJson { get; set; }
 
-    [SugarColumn(IsJson = true)] public string RegionJson { get; set; }
+    [SugarColumn(ColumnDataType = "text")] public string RegionJson { get; set; }
 
-    [SugarColumn(IsJson = true)] public string RawJson { get; set; }
+    [SugarColumn(ColumnDataType = "text")] public string RawJson { get; set; }
 
     public string Type { get; set; }
     public string Description { get; set; }

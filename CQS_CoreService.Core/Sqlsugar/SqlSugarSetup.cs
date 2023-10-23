@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using CQS_CoreService.Core.Entity;
 using CQS_CoreService.Core.Entity.Relations;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +32,7 @@ public static class SqlSugarSetup
             db =>
             {
                 // 单例参数配置，所有上下文生效
-                db.Aop.OnLogExecuting = (sql, pars) => { Console.WriteLine(sql); };
+                db.Aop.OnLogExecuting = (sql, pars) => { };
             });
 
         services.AddSingleton<ISqlSugarClient>(sqlSugar);

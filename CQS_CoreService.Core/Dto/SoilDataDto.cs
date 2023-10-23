@@ -18,6 +18,21 @@ public class SoilDataDto
     public int OwnerId { get; set; }
 }
 
+public class SoilDataDetailDto
+{
+    public int Id { get; set; }
+    public DateTime CreatedTime { get; set; }
+    public DateTime UpdatedTime { get; set; }
+    public string ExtraJson { get; set; }
+    public string GeoJson { get; set; }
+    public string RegionJson { get; set; }
+    public string RawJson { get; set; }
+    public string Type { get; set; }
+    public string Description { get; set; }
+    public string Location { get; set; }
+    public int OwnerId { get; set; }
+}
+
 public class SoilDataSimpleDto
 {
     public int Id { get; set; }

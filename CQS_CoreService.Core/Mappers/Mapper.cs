@@ -10,7 +10,7 @@ public class Mapper : IRegister
     {
         config.ForType<SoilDataEntity, SoilDataSimpleDto>()
             .Map(d => d.RawJson, s => s.RawJson != null)
-            .Map(d => d.ExtraJson, s => s.ExtraJson != null)
+            .Map(d => d.ExtraJson, s => s.ExtraJson != null && s.ExtraJson != "{}")
             .Map(d => d.GeoJson, s => s.GeoJson != null)
             .Map(d => d.RegionJson, s => s.RegionJson != null);
 
@@ -20,5 +20,11 @@ public class Mapper : IRegister
         config.ForType<UserEntity, UserDesensitizedDto>()
             .Map(d => d.Phone, s => Desensitizer.GetSafePhone(s.Phone))
             .Map(d => d.IdNumber, s => Desensitizer.GetSafeIdNumber(s.IdNumber));
+
+        config.ForType<SoilDataEntity, SoilDataDetailDto>()
+            .Map(d => d.RawJson, s => s.RawJson)
+            .Map(d => d.ExtraJson, s => s.ExtraJson)
+            .Map(d => d.GeoJson, s => s.GeoJson)
+            .Map(d => d.RegionJson, s => s.RegionJson);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Furion.Logging.Extensions;
+﻿using System.Text;
+using Furion.Logging.Extensions;
 
 namespace CQS_CoreService.Application;
 
@@ -13,6 +14,15 @@ public class RegionDataService : IRegionDataService, ITransient
     {
         try
         {
+            var geoJSON = "";
+            if (jsonFile.Length != 0)
+            {
+                var bytes = new byte[jsonFile.Length];
+                await using var stream = jsonFile.OpenReadStream();
+                _ = await stream.ReadAsync(bytes.AsMemory(0, (int)jsonFile.Length));
+                geoJSON = Encoding.UTF8.GetString(bytes);
+            }
+
             return true;
         }
         catch (Exception e)

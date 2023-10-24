@@ -49,5 +49,6 @@ public static class SqlSugarSetup
         db.CodeFirst.InitTables(typeof(SoilDataEntity));
         db.CodeFirst.InitTables(typeof(UserRoleRelation));
         db.CodeFirst.InitTables(typeof(UserGroupRelation));
+        db.CodeFirst.InitTables(typeof(RegionDataEntity));
     }
 }

@@ -20,6 +20,7 @@ public class RegionDataEntity
     public string Type { get; set; }
     public string Description { get; set; }
     public string Location { get; set; }
+    public string FId { get; set; }
     public int OwnerId { get; set; }
 
     [Navigate(NavigateType.OneToOne, nameof(OwnerId))]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CQS_CoreService.Core.Entity.Relations;
 using SqlSugar;
 
 namespace CQS_CoreService.Core.Entity;
@@ -19,6 +20,6 @@ public class RegionEntity
 
     [SugarColumn(DefaultValue = "未命名区域")] public string Name { get; set; }
 
-    [Navigate(NavigateType.OneToMany, nameof(RegionDataEntity.Id))]
+    [Navigate(typeof(RegionDataRelation), nameof(RegionDataRelation.RegionId), nameof(RegionDataRelation.RegionDataId))]
     public List<RegionDataEntity> Features { get; set; }
 }

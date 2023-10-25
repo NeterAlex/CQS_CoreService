@@ -41,7 +41,7 @@ public class RegionDataService : IRegionDataService, ITransient
                         FId = fid?.ToString() ?? "-1",
                         GeoJson = feature.ToJson(),
                         ExtraJson = "{}",
-                        Description = "未设置描述",
+                        Description = "",
                         Location = regionLocation
                     };
                     dataList.Add(data);
@@ -57,10 +57,7 @@ public class RegionDataService : IRegionDataService, ITransient
                 // 插入数据库
                 _ = await _db
                     .InsertNav(region)
-                    .Include(
-                        r => r.Features,
-                        new InsertNavOptions { OneToManyIfExistsNoInsert = true }
-                    )
+                    .Include(r => r.Features)
                     .ExecuteCommandAsync();
                 return true;
             }
@@ -82,6 +79,7 @@ public class RegionDataService : IRegionDataService, ITransient
                 .Where(i => i.Id == regionId)
                 .Includes(r => r.Features)
                 .SingleAsync();
+            Console.WriteLine(region.Features.Count);
             return region;
         }
         catch (Exception e)

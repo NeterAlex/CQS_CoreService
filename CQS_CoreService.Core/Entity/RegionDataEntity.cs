@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using CQS_CoreService.Core.Entity.Relations;
 using SqlSugar;
 
 namespace CQS_CoreService.Core.Entity;
@@ -21,4 +23,7 @@ public class RegionDataEntity
     public string Description { get; set; }
     public string Location { get; set; }
     public string FId { get; set; }
+
+    [Navigate(typeof(RegionDataRelation), nameof(RegionDataRelation.RegionDataId), nameof(RegionDataRelation.RegionId))]
+    public List<RegionEntity> Source { get; set; }
 }

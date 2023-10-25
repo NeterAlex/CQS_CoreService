@@ -43,13 +43,18 @@ public static class SqlSugarSetup
     private static void CreateDb(ISqlSugarClient db)
     {
         db.DbMaintenance.CreateDatabase();
+
+        // Tables
         db.CodeFirst.InitTables(typeof(UserEntity));
         db.CodeFirst.InitTables(typeof(UserGroupEntity));
         db.CodeFirst.InitTables(typeof(UserRoleEntity));
         db.CodeFirst.InitTables(typeof(SoilDataEntity));
-        db.CodeFirst.InitTables(typeof(UserRoleRelation));
-        db.CodeFirst.InitTables(typeof(UserGroupRelation));
         db.CodeFirst.InitTables(typeof(RegionDataEntity));
         db.CodeFirst.InitTables(typeof(RegionEntity));
+
+        // Relations
+        db.CodeFirst.InitTables(typeof(RegionDataRelation));
+        db.CodeFirst.InitTables(typeof(UserRoleRelation));
+        db.CodeFirst.InitTables(typeof(UserGroupRelation));
     }
 }

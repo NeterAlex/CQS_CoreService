@@ -24,6 +24,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.RegionDataController.CreateRegion(System.String,System.String,System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+                通过GeoJSON创建区域信息
+            </summary>
+            <param name="regionName"></param>
+            <param name="regionLocation"></param>
+            <param name="description"></param>
+            <param name="regionJson"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.RegionDataController.GetSingleRegionData(System.Int32)">
+            <summary>
+                获得指定区域的信息
+            </summary>
+            <param name="regionId"></param>
+            <returns></returns>
+        </member>
         <member name="M:CQS_CoreService.Web.Core.Controllers.SoilDataController.Calc(System.Int32,System.String,System.String,Microsoft.AspNetCore.Http.IFormFile,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
                 根据数据源文件与区域文件计算耕地质量数据

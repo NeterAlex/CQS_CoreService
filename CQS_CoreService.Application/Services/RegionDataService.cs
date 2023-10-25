@@ -8,6 +8,7 @@ namespace CQS_CoreService.Application;
 public interface IRegionDataService
 {
     public Task<bool> ImportDataFromGeoJson(string regionName, string regionLocation, string description, IFormFile jsonFile);
+    public Task<RegionEntity> GetData(int regionId);
 }
 
 public class RegionDataService : IRegionDataService, ITransient
@@ -25,10 +26,11 @@ public class RegionDataService : IRegionDataService, ITransient
         {
             if (jsonFile.Length != 0)
             {
+                // 读取到文件流
                 await using var stream = jsonFile.OpenReadStream();
                 using var geoJson = await JsonDocument.ParseAsync(stream);
                 var featureCollection = FeatureCollection.FromJson(geoJson.RootElement.ToString());
-                //Console.WriteLine(featureCollection.Features.ToList()[0].Properties.ToJson());
+                // 组装数据
                 var dataList = new List<RegionDataEntity>();
                 foreach (var feature in featureCollection.Features)
                 {
@@ -51,8 +53,8 @@ public class RegionDataService : IRegionDataService, ITransient
                     Location = regionLocation,
                     Features = dataList
                 };
-                //_ = await _db.Insertable(dataList).ExecuteCommandAsync();
-                //_ = await _db.Insertable(region).ExecuteCommandAsync();
+
+                // 插入数据库
                 _ = await _db
                     .InsertNav(region)
                     .Include(
@@ -70,5 +72,22 @@ public class RegionDataService : IRegionDataService, ITransient
         }
 
         return false;
+    }
+
+    public async Task<RegionEntity> GetData(int regionId)
+    {
+        try
+        {
+            var region = await _db.Queryable<RegionEntity>()
+                .Where(i => i.Id == regionId)
+                .Includes(r => r.Features)
+                .SingleAsync();
+            return region;
+        }
+        catch (Exception e)
+        {
+            e.Message.LogError();
+            throw;
+        }
     }
 }

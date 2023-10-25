@@ -21,8 +21,4 @@ public class RegionDataEntity
     public string Description { get; set; }
     public string Location { get; set; }
     public string FId { get; set; }
-    public int OwnerId { get; set; }
-
-    [Navigate(NavigateType.OneToOne, nameof(OwnerId))]
-    public UserEntity Owner { get; set; }
 }

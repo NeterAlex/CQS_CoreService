@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using BAMCIS.GeoJSON;
 using CQS_CoreService.Application;
 using CQS_CoreService.Core.Entity;
 using Microsoft.AspNetCore.Http;
@@ -43,7 +45,29 @@ public class RegionDataController
     [HttpGet("single")]
     public async Task<RegionEntity> GetSingleRegionData(int regionId)
     {
-        var result = await _regionDataService.GetData(regionId);
-        return result;
+        return await _regionDataService.GetBasicData(regionId);
+    }
+
+    /// <summary>
+    ///     获得指定区域的GeoJson
+    /// </summary>
+    /// <param name="regionId"></param>
+    /// <returns></returns>
+    [HttpGet("single/geojson")]
+    public async Task<FeatureCollection> GetSingleRegionGeoJson(int regionId)
+    {
+        return await _regionDataService.GetData(regionId);
+    }
+
+    /// <summary>
+    ///     获取所有区域信息
+    /// </summary>
+    /// <param name="pageSize"></param>
+    /// <param name="pageIndex"></param>
+    /// <returns></returns>
+    [HttpGet("list")]
+    public async Task<List<RegionEntity>> GetListRegionData([FromQuery] int pageSize = 50, [FromQuery] int pageIndex = 1)
+    {
+        return await _regionDataService.GetBasicDataList(pageSize, pageIndex);
     }
 }

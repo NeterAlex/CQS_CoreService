@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using BAMCIS.GeoJSON;
 using CQS_CoreService.Core.Entity;
+using CQS_CoreService.Core.Utils;
 using Furion.Logging.Extensions;
 
 namespace CQS_CoreService.Application;
@@ -8,7 +9,9 @@ namespace CQS_CoreService.Application;
 public interface IRegionDataService
 {
     public Task<bool> ImportDataFromGeoJson(string regionName, string regionLocation, string description, IFormFile jsonFile);
-    public Task<RegionEntity> GetData(int regionId);
+    public Task<FeatureCollection> GetData(int regionId);
+    public Task<RegionEntity> GetBasicData(int regionId);
+    public Task<List<RegionEntity>> GetBasicDataList(int pageSize = 50, int pageIndex = 1);
 }
 
 public class RegionDataService : IRegionDataService, ITransient
@@ -71,7 +74,7 @@ public class RegionDataService : IRegionDataService, ITransient
         return false;
     }
 
-    public async Task<RegionEntity> GetData(int regionId)
+    public async Task<FeatureCollection> GetData(int regionId)
     {
         try
         {
@@ -79,8 +82,39 @@ public class RegionDataService : IRegionDataService, ITransient
                 .Where(i => i.Id == regionId)
                 .Includes(r => r.Features)
                 .SingleAsync();
-            Console.WriteLine(region.Features.Count);
+            var collection = Converter.FeaturesToCollection(region.Features);
+            return collection;
+        }
+        catch (Exception e)
+        {
+            e.Message.LogError();
+            throw;
+        }
+    }
+
+    public async Task<RegionEntity> GetBasicData(int regionId)
+    {
+        try
+        {
+            var region = await _db.Queryable<RegionEntity>()
+                .Where(i => i.Id == regionId)
+                .SingleAsync();
             return region;
+        }
+        catch (Exception e)
+        {
+            e.Message.LogError();
+            throw;
+        }
+    }
+
+    public async Task<List<RegionEntity>> GetBasicDataList(int pageSize = 50, int pageIndex = 1)
+    {
+        try
+        {
+            RefAsync<int> count = 0;
+            var list = await _db.Queryable<RegionEntity>().ToPageListAsync(pageIndex, pageSize, count);
+            return list;
         }
         catch (Exception e)
         {

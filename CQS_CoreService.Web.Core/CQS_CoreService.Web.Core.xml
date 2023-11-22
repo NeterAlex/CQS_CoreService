@@ -128,5 +128,13 @@
             <param name="userUpdateVo"></param>
             <returns></returns>
         </member>
+        <member name="M:CQS_CoreService.Web.Core.Controllers.UserController.GetUserRoleList(System.Int32,System.Int32)">
+            <summary>
+                获取全部用户组信息
+            </summary>
+            <param name="pageSize"></param>
+            <param name="pageIndex"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

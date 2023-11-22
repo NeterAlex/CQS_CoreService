@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 using CQS_CoreService.Application;
 using CQS_CoreService.Core.Dto;
 using Mapster;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CQS_CoreService.Web.Core.Controllers;
 
 [Microsoft.AspNetCore.Components.Route("api/soildata")]
-[ApiDescriptionSettings(Tag = "土地质量数据 SoilData API")]
+[ApiDescriptionSettings(Tag = "田块尺度土地质量数据 SoilData(Block Scale) API")]
 [DynamicApiController]
 public class SoilDataController
 {
@@ -34,7 +33,6 @@ public class SoilDataController
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
     [HttpPost("calc")]
-    [Authorize]
     public async Task<SoilDataSimpleDto> Calc([FromForm] int userId, [FromForm] string location,
         [FromForm] string description,
         IFormFile rawFile,
@@ -52,7 +50,6 @@ public class SoilDataController
     /// <param name="dataId"></param>
     /// <returns></returns>
     [HttpGet("single")]
-    [Authorize]
     public async Task<SoilDataDetailDto> GetSingleSoilData(int dataId)
     {
         var result = await _soilDataService.GetSoilData(dataId);
@@ -66,7 +63,6 @@ public class SoilDataController
     /// <param name="userId"></param>
     /// <returns></returns>
     [HttpGet("list/from-user")]
-    [Authorize]
     public async Task<List<SoilDataSimpleDto>> GetListFromUser(int userId)
     {
         var list = await _soilDataService.GetSoilDataListFromUser(userId);
@@ -79,7 +75,6 @@ public class SoilDataController
     /// <param name="userGroupId"></param>
     /// <returns></returns>
     [HttpGet("list/from-group")]
-    [Authorize]
     public async Task<List<SoilDataSimpleDto>> GetListFromUserGroup(int userGroupId)
     {
         var list = await _soilDataService.GetSoilDataFromUserGroup(userGroupId);

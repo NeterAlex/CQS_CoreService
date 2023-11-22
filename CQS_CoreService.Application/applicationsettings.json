@@ -24,9 +24,9 @@
   "JWTSettings": {
     "ValidateIssuerSigningKey": true,
     "IssuerSigningKey": "o32*4@37DNB#I934NA=ksDA",
-    "ValidateIssuer": true,
+    "ValidateIssuer": false,
     "ValidIssuer": "CQS_CoreService",
-    "ValidateAudience": true,
+    "ValidateAudience": false,
     "ValidAudience": "CQS_WebClient",
     "ValidateLifetime": true,
     "ExpiredTime": 1440,

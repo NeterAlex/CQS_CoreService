@@ -13,11 +13,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.8.8.48"/>
-        <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.48"/>
-        <PackageReference Include="Furion.Pure" Version="4.8.8.48"/>
+        <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.8.8.55" />
+        <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.55" />
+        <PackageReference Include="Furion.Pure" Version="4.8.8.55" />
         <PackageReference Include="GeoJSON" Version="2.3.1"/>
-        <PackageReference Include="SqlSugarCore" Version="5.1.4.107"/>
+        <PackageReference Include="SqlSugarCore" Version="5.1.4.114" />
     </ItemGroup>
 
     <ItemGroup>

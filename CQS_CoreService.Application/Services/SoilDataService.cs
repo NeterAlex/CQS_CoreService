@@ -165,7 +165,7 @@ public class SoilDataService : ISoilDataService, ITransient
     {
         try
         {
-            var queryData = await "http://localhost:8001/api/calc"
+            var queryData = await "http://localhost:5020/api/calc"
                 .SetContentType("multipart/form-data")
                 .SetContentEncoding(Encoding.UTF8)
                 .SetJsonSerialization<NewtonsoftJsonSerializerProvider>()

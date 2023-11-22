@@ -15,8 +15,8 @@ public class Startup : AppStartup
     {
         services.AddConsoleFormatter();
         services.AddRemoteRequest();
-        services.AddJwt<JwtHandler>();
         services.AddCorsAccessor();
+        services.AddJwt<JwtHandler>();
         services.AddControllers()
             .AddFriendlyException()
             .AddNewtonsoftJson(options =>

@@ -11,6 +11,7 @@ public interface IUserService
     public Task<List<UserEntity>> GetUserList(int pageSize, int pageIndex);
     public Task<List<UserEntity>> GetUserListByRole(int roleId, int pageSize, int pageindex);
     public Task<List<UserEntity>> GetUserListByGroup(int roleId, int pageSize, int pageindex);
+    public Task<List<UserRoleEntity>> GetUserRoleList(int pageSize, int pageIndex);
 }
 
 public class UserService : IUserService, ITransient
@@ -155,6 +156,23 @@ public class UserService : IUserService, ITransient
                 .Where(i => i.UserGroups.Contains(group))
                 .ToPageListAsync(pageIndex, pageSize, totalCount);
             return userList;
+        }
+        catch (Exception e)
+        {
+            e.Message.LogError();
+            throw;
+        }
+    }
+
+    public async Task<List<UserRoleEntity>> GetUserRoleList(int pageSize = 50, int pageIndex = 1)
+    {
+        try
+        {
+            RefAsync<int> totalCount = 0;
+            var roleList = await _db.Queryable<UserRoleEntity>()
+                .Includes(i => i.Users)
+                .ToPageListAsync(pageIndex, pageSize, totalCount);
+            return roleList;
         }
         catch (Exception e)
         {

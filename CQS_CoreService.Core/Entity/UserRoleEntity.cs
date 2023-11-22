@@ -19,5 +19,5 @@ public class UserRoleEntity
     public string Name { get; set; }
 
     [Navigate(typeof(UserRoleRelation), nameof(UserRoleRelation.UserRoleId), nameof(UserRoleRelation.UserId))]
-    public List<UserRoleEntity> Users { get; set; }
+    public List<UserEntity> Users { get; set; }
 }

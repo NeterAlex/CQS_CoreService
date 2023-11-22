@@ -6,7 +6,6 @@ using CQS_CoreService.Core.Dto;
 using CQS_CoreService.Core.Vo;
 using Furion.DynamicApiController;
 using Mapster;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CQS_CoreService.Web.Core.Controllers;
@@ -28,7 +27,6 @@ public class UserController : IDynamicApiController
     /// <param name="userId"></param>
     /// <returns></returns>
     [HttpGet("single")]
-    [Authorize]
     public async Task<UserDesensitizedDto> GetSingleUser(int userId)
     {
         var user = await _userService.GetUser(userId);
@@ -41,7 +39,6 @@ public class UserController : IDynamicApiController
     /// <param name="userId"></param>
     /// <returns></returns>
     [HttpDelete("single")]
-    [Authorize]
     public async Task<bool> DeleteSingleUser(int userId)
     {
         return await _userService.DeleteUser(userId);
@@ -54,7 +51,6 @@ public class UserController : IDynamicApiController
     /// <param name="pageIndex"></param>
     /// <returns></returns>
     [HttpGet("list")]
-    [Authorize]
     public async Task<List<UserDesensitizedDto>> GetUserList([FromQuery] int pageSize = 50, [FromQuery] int pageIndex = 1)
     {
         var list = await _userService.GetUserList(pageSize, pageIndex);
@@ -69,7 +65,6 @@ public class UserController : IDynamicApiController
     /// <param name="pageIndex"></param>
     /// <returns></returns>
     [HttpGet("list/from-group")]
-    [Authorize]
     public async Task<List<UserDesensitizedDto>> GetUserListFromUserGroup([FromQuery] int userGroupId, [FromQuery] int pageSize = 50,
         [FromQuery] int pageIndex = 1)
     {
@@ -84,7 +79,6 @@ public class UserController : IDynamicApiController
     /// <param name="userUpdateVo"></param>
     /// <returns></returns>
     [HttpPut("single")]
-    [Authorize]
     public async Task<UserDesensitizedDto> UpdateUser([FromQuery] int userId, [FromQuery] UserUpdateVo userUpdateVo)
     {
         var user = await _userService.GetUser(userId);
@@ -95,5 +89,19 @@ public class UserController : IDynamicApiController
         user.IdNumber = userUpdateVo.IdNumber;
         var result = await _userService.UpdateUserInfo(user.Id, user);
         return result.Adapt<UserDesensitizedDto>();
+    }
+
+    /// <summary>
+    ///     获取全部用户组信息
+    /// </summary>
+    /// <param name="pageSize"></param>
+    /// <param name="pageIndex"></param>
+    /// <returns></returns>
+    [HttpGet("role/list")]
+    public async Task<List<UserRoleListDto>> GetUserRoleList([FromQuery] int pageSize = 50,
+        [FromQuery] int pageIndex = 1)
+    {
+        var list = await _userService.GetUserRoleList(pageSize, pageIndex);
+        return list.Select(i => i.Adapt<UserRoleListDto>()).ToList();
     }
 }

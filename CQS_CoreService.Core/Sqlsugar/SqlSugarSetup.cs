@@ -12,7 +12,7 @@ public static class SqlSugarSetup
     {
         var configConnection = new ConnectionConfig
         {
-            ConnectionString = "PORT=5432;DATABASE=cqs_db;HOST=localhost;PASSWORD=1q2w3e$r5tGh;USER ID=postgres",
+            ConnectionString = "PORT=5432;DATABASE=cqs_db;HOST=localhost;PASSWORD=######;USER ID=postgres",
             DbType = DbType.PostgreSQL,
             IsAutoCloseConnection = true,
             LanguageType = LanguageType.Chinese,
